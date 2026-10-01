@@ -1,40 +1,31 @@
-### Airplane Mode
+# Airplane Mode
 
-Airplane ticket management system
+A Frappe app (v16) for airplane ticket management and airport shop management.
 
-### Installation
+## Features
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+- **Flights and tickets:** flights with gate and crew; tickets pick up the flight's gate number.
+- **Airport shops:** Shop, Shop Type, Shop Tenant, Shop Contract, Shop Settings, Shop Lead and Rent Payment doctypes. An active contract marks a shop as Occupied.
+- **Monthly rent reminders:** a scheduled job (`tasks.send_rent_reminders`, 9:00 on the 1st) creates a Rent Payment and emails the tenant for each active contract.
+- **Reports and print format:** Airport Shop Occupancy report and Rent Receipt print format.
+- **Website:** public `/shops` and `/shops/<name>` pages, plus a Shop Lead web form.
+- **REST API:** use `/api/resource/Shop` with a `token key:secret` header.
 
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch version-16
-bench install-app airplane_mode
-```
-
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+## Install
 
 ```bash
-cd apps/airplane_mode
-pre-commit install
+cd ~/frappe/frappe-bench
+bench get-app /path/to/airplane_mode
+bench --site site1.local install-app airplane_mode
+bench --site site1.local migrate
 ```
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+## Run the reminder job manually
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
-### CI
+```bash
+bench --site site1.local execute airplane_mode.airport_shop_management.tasks.send_rent_reminders
+```
 
-This app can use GitHub Actions for CI. The following workflows are configured:
+## License
 
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
-
-### License
-
-mit
+MIT
