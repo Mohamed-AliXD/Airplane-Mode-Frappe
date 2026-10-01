@@ -1,0 +1,44 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-10-01 02:40:40.403470",
+ "disable_prepared_report_automation": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "doctype_to_sync": [],
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-10-01 02:40:40.403470",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Management",
+ "name": "Airport Shop Occupancy",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\r\n    airport AS \"Airport:Link/Airport:150\",\r\n    COUNT(*) AS \"Total Shops:Int:120\",\r\n    SUM(status = 'Available') AS \"Available:Int:120\",\r\n    SUM(status = 'Occupied') AS \"Occupied:Int:120\"\r\nFROM `tabShop`\r\nGROUP BY airport\r\nORDER BY airport",
+ "ref_doctype": "Shop",
+ "report_name": "Airport Shop Occupancy",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Airport Authority Personnel"
+  },
+  {
+   "role": "Fleet Manager"
+  },
+  {
+   "role": "Travel Agent"
+  },
+  {
+   "role": "Flight Crew Member"
+  }
+ ],
+ "snapshot_report": 0,
+ "timeout": 0
+}

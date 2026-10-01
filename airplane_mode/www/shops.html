@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airport Shops</title>
+  <link rel="stylesheet" href="/assets/airplane_mode/css/shop_portal.css">
+</head>
+<body>
+  <h1>Airport Shops</h1>
+  {% if shops %}
+    {% for shop in shops %}
+      <div class="shop-card">
+        <h3><a href="/shops/{{ shop.name | urlencode }}">{{ shop.shop_name or shop.shop_number }}</a></h3>
+        <p>Shop {{ shop.shop_number }} at {{ shop.airport }}</p>
+        <p>Status: {{ shop.status }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No shops found.</p>
+  {% endif %}
+</body>
+</html>
